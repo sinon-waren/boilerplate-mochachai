@@ -93,9 +93,10 @@ suite("Functional Tests with Zombie.js", function () {
         .fill("surname", "Colombo")
         .then(() => browser.pressButton("submit"))
         .then(() => {
+          browser.assert.success();
           browser.assert.text("span#name", "Cristoforo");
           browser.assert.text("span#surname", "Colombo");
-          browser.assert.element("span#dates");
+          browser.assert.elements("span#dates", 1);
           done();
         })
         .catch(done);
