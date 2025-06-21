@@ -69,13 +69,16 @@ suite("Functional Tests", function () {
 });
 
 const Browser = require("zombie");
-
+Browser.site = "http://0.0.0.0:3000";
 suite("Functional Tests with Zombie.js", function () {
   this.timeout(5000);
-
+  const browser = new Browser();
   suite("Headless browser", function () {
     test('should have a working "site" property', function () {
       assert.isNotNull(browser.site);
+      suiteSetup(function (done) {
+        return browser.visit("/", done);
+      });
     });
   });
 
